@@ -1,0 +1,112 @@
+---
+title: "coffee_n_coding"
+title-slide-attributes:
+  data-background-color: "#f9bf07"
+  data-background-image: 'https://raw.githubusercontent.com/The-Strategy-Unit/assets/main/logo_black.svg'
+  data-background-size: 10%
+  data-background-position: 98% 2%
+subtitle: "some learning (and problems) from having used Quarto for a bit now, but this is really just about the html report format!"
+author: "Andy Hood"
+date: last-modified
+date-format: "YYYY-MM-DD"
+format:
+  revealjs:
+    slide-number: c/t
+    preview-links: true
+    width: 1600
+    height: 900
+editor: visual
+toc: true
+toc-title: "Table of contents:"
+---
+
+# Referencing {background-image="images/scared_cat.gif"}
+
+This approach works for me, but there'll likely be many other ways to skin the proverbial cat...
+
+## Building a bibliography
+
+-   text file in WD for storing all your references called e.g. references.bib (notepad++ or alternative)
+-   standard [BibTex](https://bibtex.eu/types/) formatting for each entry (article, book, website etc...)
+-   reference the bibliography file in your yaml header - "bibliography: references.bib"
+-   call in-line in your report text using e.g. [@Beeley2023]
+
+## example
+
+::: {.fragment fragment-index="1"}
+![](images/bib_entry_ex.png){.absolute top="100" left="0" width="1200"}
+:::
+
+::: {.fragment fragment-index="2"}
+![](images/ref_quarto_ex.png){.absolute bottom="50" left="0" width="700"}
+:::
+
+::: {.fragment fragment-index="3"}
+![](images/refs_final_ex.png){.absolute bottom="100" right="50" width="900"}
+:::
+
+## Reference 'styles'
+
+-   Citation Style Language (CSL) determines the output type of your references. Harvard and Vancouver probably the most famous.
+
+-   1,000's available to choose from, some specific to certain journals.
+
+<https://github.com/citation-style-language/styles>
+
+<https://www.zotero.org/styles>
+
+-   save the style settings into css and reference in your yaml
+
+# Report themes
+
+What's your favourite Quarto theme?
+
+Did you know there were built-in themes or themes other than Cosmo?
+
+::: {.fragment fragment-index="1"}
+```{=html}
+<iframe width="1200" height="600" src="https://bootswatch.com/" title="Bootswatch website"></iframe>
+```
+:::
+
+Of course if you have the time and ability you can build/define your own Strategy Unit theme <https://quarto.org/docs/output-formats/html-themes.html>
+
+# Layouts (document and chunks)
+
+::: {.fragment .fade-out fragment-index="1"}
+![](images/pulling_hair.png){.absolute top="100" left="0" width="700"}
+:::
+
+::: {.fragment fragment-index="2"}
+Default page/column widths are fine for portrait style reports/pdf. But when producing html reports that will 99% of time be viewed on monitors 4:3 or greater then too much blank real estate for my liking (and i'm not much of a fan of margin material!). So what to do with layout options?
+
+-   Global versus chunk?
+
+-   Tables, (leaflet) maps and images fit to global page settings...generated plots don't!
+
+-   Plots default to png and weird things happen when you manually size them in chunks.
+
+So....
+:::
+
+## layout compromise
+
+format:
+
+html:
+
+page-layout: full [(default nav panel on left then fills rest of screen with content)]{.fragment .highlight-red}
+
+fig-width: 9 [(trial and error, seems to match page full width 🤷‍♂️)]{.fragment .highlight-red}
+
+fig-asp: 0.714 [(keeps quarto default plot ratio)]{.fragment .highlight-red}
+
+fig-format: svg [(plot components don't go weird)]{.fragment .highlight-red}
+
+<br />
+
+More options to play with <https://quarto.org/docs/authoring/article-layout.html>
+
+# Another gif just because i can!
+
+![](images/southpark_didit.gif){width="700" height="600"}

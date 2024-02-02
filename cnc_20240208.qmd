@@ -1,0 +1,249 @@
+---
+title: "coffee_n_coding"
+title-slide-attributes:
+  data-background-color: "#f9bf07"
+  data-background-image: 'https://raw.githubusercontent.com/The-Strategy-Unit/assets/main/logo_black.svg'
+  data-background-size: 10%
+  data-background-position: 98% 2%
+subtitle: "to gantt or not to gantt; that is the question?"
+author: "Andy Hood"
+date: "2024-02-08"
+date-format: "YYYY-MM-DD"
+format:
+  revealjs:
+    slide-number: c/t
+    preview-links: true
+    width: 1600
+    height: 900
+    code-block-bg: true
+    code-block-border-left: "#f9bf07"
+editor: visual
+toc: true
+toc-title: "Table of contents:"
+---
+
+## Why and how (previously)
+
+::: {.fragment}
+**Why** - most projects of scale need, either in proposal documents (i.e. client side) or for project management purposes (i.e. consultancy-side), a representation of project stages/tasks according to a resource dimension (time). Basically; they're pretty useful for planning resource and tracking (overall) progress on a project.
+:::
+
+::: {.fragment}
+**How** - my old and lonely friend excel 😁. Conditional formatting handy. Can introduce macros/vba to easily add project items or additional periods.
+:::
+
+::: {.fragment .fade-up}
+
+![](images/gantt_excel.png)
+:::
+
+## It worked right, so why change?
+
+-   Clunky to set up
+-   Difficult to maintain / update
+-   Not accessible to others
+-   Not reproducible
+-   Not always pretty!
+
+## Options
+
+-   Online tool - [e.g. online gantt](https://www.onlinegantt.com/#/gantt)
+-   MS Teams apps - "Gantt Chart Pro", 
+-   Choice of R packages - ggplot fudging, 'plan', 'projmanR', 'candala', 'plotly', 'vistime'
+
+Essentially boiled down to what would fit with workflows re: project proposals and for ongoing monitoring.
+
+And also what looked nice, looking nice is important (NB. this concept does not apply to personal appearance and style before anyone says anything!!).
+
+## The (a) solution...Ganttrify package
+
+Someone [Giorgio Comai](https://github.com/giocomai) basically came to the same conclusion as me and developed their own package [Ganttrify](https://github.com/giocomai/ganttrify).
+
+Reasonably customisable, based on ggplot, works with numbered periods or real dates, shiny app if you're interested:
+
+::: {.fragment}
+```{=html}
+<iframe width="1200" height="600" src="https://ganttrify.europeandatajournalism.eu/" title="Ganttrify shiny"></iframe>
+```
+:::
+
+## Walkthrough - setup
+
+::: {.fragment}
+``` {r}
+#| echo=TRUE
+
+library(tidyverse) # ggplot2 n stuff
+library(knitr) # quarto n stuff
+library(ganttrify) # gantt charts n stuff
+
+# load data
+gantt <- readxl::read_excel("cnc_20240208/gantt_example.xlsx", sheet = "gantt")
+spots <- readxl::read_excel("cnc_20240208/gantt_example.xlsx", sheet = "spots")
+
+# add font for plot later
+windowsFonts('Segoe UI' = windowsFont('Segoe UI'))
+
+```
+:::
+
+::: {.fragment}
+``` {r}
+gantt |> head(8)
+```
+:::
+
+::: {.fragment}
+``` {r}
+spots |> head(4)
+```
+:::
+
+## Walkthrough - basic gantt
+
+::: {.fragment}
+``` {r}
+#| echo=TRUE
+
+plot_base <- ganttrify(
+          project = gantt,
+          by_date = TRUE,
+          exact_date = TRUE # specify that using full dates
+          ) 
+
+```
+:::
+
+::: {.fragment .fade-up}
+``` {r}
+
+plot_base
+
+```
+:::
+
+## Walkthrough - adding events
+
+::: {.fragment}
+``` {r}
+#| echo=TRUE
+
+plot_plus <- ganttrify(
+          project = gantt,
+          spots = spots, # adds your events
+          by_date = TRUE,
+          exact_date = TRUE
+          )
+
+```
+:::
+
+::: {.fragment .fade-up}
+``` {r}
+
+plot_plus
+
+```
+:::
+
+## Walkthrough - plotting options
+
+```{css, echo=FALSE}
+pre {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 200px;
+}
+```
+
+::: {.fragment}
+``` {r}
+#| echo=TRUE
+
+plot_adv <- ganttrify(
+          project = gantt,
+          spots = spots,
+          by_date = TRUE,
+          exact_date = TRUE,
+          alpha_wp = 1, # transparency of work package bar
+          alpha_activity = 0.6, # transparency of activity bar
+          line_end_wp = "round", # type of end style
+          line_end_activity = "round", # type of end style
+          axis_text_align = "left", # neaten text
+          size_text_relative = 1.2, # increase/decrease text size around plot
+          month_number_label = FALSE, # turn off month labels
+          font_family = "Segoe UI", # change fonts,
+          spot_size_text_relative = 0.9, # change size of spot text
+          spot_fill = alpha(c("white"), 0.3), # colour/transparency of spot fill
+          spot_padding = unit(0.2, "lines"), # padding around event text
+          colour_palette = c("#f9bf07", "#ec6555", "#ABDDA4", "#5881c1", "#686F73") # customise colours
+          )
+
+```
+:::
+
+::: {.fragment .fade-up}
+``` {r}
+
+plot_adv
+
+```
+:::
+
+## Walkthrough - final touches...
+
+::: {.fragment}
+``` {r}
+#| echo=TRUE
+
+plot_final <- plot_adv +
+  geom_vline(xintercept = ymd(today())) + # add line to show where today is in project
+  labs(title = "Evaluating single-bed accommodation impacts",
+        subtitle = "Project timeline",
+        caption = paste0("vertical line indicates todays date (",ymd(today()),")") #titles n stuff
+       )
+
+```
+:::
+
+::: {.fragment .fade-up}
+``` {r}
+
+plot_final
+
+```
+:::
+
+## Wrap-up
+::: {.fragment}
+-   Off-the-shelf solution
+-   Customisable and extendable
+-   Easy to knit into workflow and documentation
+-   Easy to update
+:::
+
+::: {.fragment}
+**Likely extended uses:**
+
+-   Adding completion values to each work package or activity (or dynamic transparency?)
+-   Adding other annotations with geom_text
+-   adding logo or other images
+-   making interactive (hovertips and the like)
+:::
+
+## and finally
+
+Don't worry YiWen i havent forgotten you! There are options for generating gantt charts in python:
+
+[Using matplotlib](https://towardsdatascience.com/gantt-charts-with-pythons-matplotlib-395b7af72d72)
+
+[Using plotly](https://python-charts.com/evolution/gantt-chart-plotly/?utm_content=cmp-true)
+
+::: {.fragment}
+
+![](https://media.istockphoto.com/id/1357394932/vector/q-a-banner-icon-in-flat-style-question-and-answer-vector-illustration-on-white-isolated.jpg?s=612x612&w=0&k=20&c=OH7X7MuUYSMCy7CHyq4VskUciQwsCJpR_R5oqBNWLx4=)
+
+:::

@@ -2,9 +2,6 @@
 title: "coffee_n_coding"
 title-slide-attributes:
   data-background-color: "#f9bf07"
-  data-background-image: 'https://raw.githubusercontent.com/The-Strategy-Unit/assets/main/logo_black.svg'
-  data-background-size: 10%
-  data-background-position: 98% 2%
 subtitle: "to gantt or not to gantt; that is the question?"
 author: "Andy Hood"
 date: "2024-02-08"
@@ -15,8 +12,9 @@ format:
     preview-links: true
     width: 1600
     height: 900
-    code-block-bg: true
-    code-block-border-left: "#f9bf07"
+    #code-block-bg: true
+    #code-block-border-left: "#f9bf07"
+    css: su_presentation.scss
 editor: visual
 toc: true
 toc-title: "Table of contents:"
@@ -57,9 +55,9 @@ And also what looked nice, looking nice is important (NB. this concept does not 
 
 ## The (a) solution...Ganttrify package
 
-Someone [Giorgio Comai](https://github.com/giocomai) basically came to the same conclusion as me and developed their own package [Ganttrify](https://github.com/giocomai/ganttrify).
+Someone [Giorgio Comai](https://www.github.com/giocomai) basically came to the same conclusion as me and developed their own package [Ganttrify](https://www.github.com/giocomai/ganttrify).
 
-Reasonably customisable, based on ggplot, works with numbered periods or real dates, shiny app if you're interested:
+Reasonably customisable; based on ggplot; works with numbered periods, months or full dates; shiny app if you're interested:
 
 ::: {.fragment}
 ```{=html}

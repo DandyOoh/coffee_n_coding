@@ -1,0 +1,13 @@
+name: meeting_cost
+title: meeting_cost
+username: andrew-hood
+account: andrew-hood
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14474511
+bundleId: 10085563
+url: https://andrew-hood.shinyapps.io/meeting_cost/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: staff_rates.csv

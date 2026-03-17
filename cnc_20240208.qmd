@@ -22,16 +22,15 @@ toc-title: "Table of contents:"
 
 ## Why and how (previously)
 
-::: {.fragment}
+::: fragment
 **Why** - most projects of scale need, either in proposal documents (i.e. client side) or for project management purposes (i.e. consultancy-side), a representation of project stages/tasks according to a resource dimension (time). Basically; they're pretty useful for planning resource and tracking (overall) progress on a project.
 :::
 
-::: {.fragment}
+::: fragment
 **How** - my old and lonely friend excel 😁. Conditional formatting handy. Can introduce macros/vba to easily add project items or additional periods.
 :::
 
 ::: {.fragment .fade-up}
-
 ![](images/gantt_excel.png)
 :::
 
@@ -46,7 +45,7 @@ toc-title: "Table of contents:"
 ## Options
 
 -   Online tool - [e.g. online gantt](https://www.onlinegantt.com/#/gantt)
--   MS Teams apps - "Gantt Chart Pro", 
+-   MS Teams apps - "Gantt Chart Pro",
 -   Choice of R packages - ggplot fudging, 'plan', 'projmanR', 'candala', 'plotly', 'vistime'
 
 Essentially boiled down to what would fit with workflows re: project proposals and for ongoing monitoring.
@@ -59,7 +58,7 @@ Someone [Giorgio Comai](https://www.github.com/giocomai) basically came to the s
 
 Reasonably customisable; based on ggplot; works with numbered periods, months or full dates; shiny app if you're interested:
 
-::: {.fragment}
+::: fragment
 ```{=html}
 <iframe width="1200" height="600" src="https://ganttrify.europeandatajournalism.eu/" title="Ganttrify shiny"></iframe>
 ```
@@ -67,8 +66,8 @@ Reasonably customisable; based on ggplot; works with numbered periods, months or
 
 ## Walkthrough - setup
 
-::: {.fragment}
-``` {r}
+::: fragment
+```{r}
 #| echo=TRUE
 
 library(tidyverse) # ggplot2 n stuff
@@ -85,22 +84,22 @@ windowsFonts('Segoe UI' = windowsFont('Segoe UI'))
 ```
 :::
 
-::: {.fragment}
-``` {r}
+::: fragment
+```{r}
 gantt |> head(8)
 ```
 :::
 
-::: {.fragment}
-``` {r}
+::: fragment
+```{r}
 spots |> head(4)
 ```
 :::
 
 ## Walkthrough - basic gantt
 
-::: {.fragment}
-``` {r}
+::: fragment
+```{r}
 #| echo=TRUE
 
 plot_base <- ganttrify(
@@ -113,7 +112,7 @@ plot_base <- ganttrify(
 :::
 
 ::: {.fragment .fade-up}
-``` {r}
+```{r}
 
 plot_base
 
@@ -122,8 +121,8 @@ plot_base
 
 ## Walkthrough - adding events
 
-::: {.fragment}
-``` {r}
+::: fragment
+```{r}
 #| echo=TRUE
 
 plot_plus <- ganttrify(
@@ -137,7 +136,7 @@ plot_plus <- ganttrify(
 :::
 
 ::: {.fragment .fade-up}
-``` {r}
+```{r}
 
 plot_plus
 
@@ -157,8 +156,8 @@ pre[class] {
 }
 ```
 
-::: {.fragment}
-``` {r}
+::: fragment
+```{r}
 #| echo=TRUE
 
 plot_adv <- ganttrify(
@@ -184,7 +183,7 @@ plot_adv <- ganttrify(
 :::
 
 ::: {.fragment .fade-up}
-``` {r}
+```{r}
 
 plot_adv
 
@@ -193,8 +192,8 @@ plot_adv
 
 ## Walkthrough - final touches...
 
-::: {.fragment}
-``` {r}
+::: fragment
+```{r}
 #| echo=TRUE
 
 plot_final <- plot_adv +
@@ -208,7 +207,7 @@ plot_final <- plot_adv +
 :::
 
 ::: {.fragment .fade-up}
-``` {r}
+```{r}
 
 plot_final
 
@@ -216,14 +215,15 @@ plot_final
 :::
 
 ## Wrap-up
-::: {.fragment}
+
+::: fragment
 -   Off-the-shelf solution
 -   Customisable and extendable
 -   Easy to knit into workflow and documentation
 -   Easy to update
 :::
 
-::: {.fragment}
+::: fragment
 **Likely extended uses:**
 
 -   Adding completion values to each work package or activity (or dynamic transparency?)
@@ -240,8 +240,6 @@ Don't worry YiWen i havent forgotten you! There are options for generating gantt
 
 [Using plotly](https://python-charts.com/evolution/gantt-chart-plotly/?utm_content=cmp-true)
 
-::: {.fragment}
-
+::: fragment
 ![](https://media.istockphoto.com/id/1357394932/vector/q-a-banner-icon-in-flat-style-question-and-answer-vector-illustration-on-white-isolated.jpg?s=612x612&w=0&k=20&c=OH7X7MuUYSMCy7CHyq4VskUciQwsCJpR_R5oqBNWLx4=)
-
 :::

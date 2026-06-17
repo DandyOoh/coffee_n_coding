@@ -1,0 +1,141 @@
+---
+title: "{targets} for dummies (by a dummy)"
+subtitle: "Informal, experiential walk-through of the R targets package and workflow"
+author: Andy Hood
+date: "2026-07-02"
+format:
+  revealjs:
+    theme: moon            # Other options: default, beige, serif, night, blood, moon, solarized
+    css: styles.css
+    slide-number: true       # Shows slide numbers
+    toc: true                # Table of contents sidebar
+    toc-depth: 2
+    transition: fade         # Options: none, fade, slide, convex, concave, zoom
+    # highlight-style: solarized-light
+    embed-resources: false   # Set true to inline all assets
+    incremental: false        # Incrementally reveal list items
+    center: false             # Center content vertically
+    controls: true           # Show navigation arrows
+    progress: true           # Top progress bar
+    chalkboard: true         # Enable plugin for drawing (if installed)
+    preview-links: true      # Show link previews on hover
+    code-fold: false         # Set true to fold code blocks
+    code-line-numbers: true  # Show line numbers
+    auto-animate: true       # Smart slide animation when elements match
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r setup, echo=FALSE}
+
+library(tibble)
+library(gt)
+```
+
+## Setting the scene
+
+:::: columns
+
+::: {.column width="66%"}
+![](excel_chaos.png)
+:::
+
+::: {.column width="33%" .fragment}
+
+::: {style="font-size: 0.8em;"}
+- Workflows are in your head
+- Poor documentation??
+- Forget dependencies
+- Work starts off simple -> snowballs into 4,000 line nightmare
+- All your processing done in output (shiny / quarto etc...)
+:::
+
+:::
+
+::::
+
+## Typical workflow
+
+1.  Get data
+1.  Wrangle data
+1.  Calculate 'stuff'
+1.  Visualise
+1.  Report/publish
+
+## {targets} package intro
+
+[Targets](https://books.ropensci.org/targets) is a pipeline tool for statistics and data science. It compiles all the tasks in a given pipeline (project) and only runs/computes them when things change. Dependencies are ALL automatically processed.
+
+It's a function-orientated programming approach.
+
+## Testimonials...?
+
+::: {.speech-bubble .fragment}
+"Was reet bloody great" - Jac G
+:::
+
+::: {.speech-bubble .fragment}
+"What time's the ruggers on Jeeves?" - Alex L
+:::
+
+
+## Pro's and Con's...
+
+:::: columns
+
+::: {.column width="50%"}
+### ✅ Pros
+
+- Forces functional programming
+- Aids reproducible pipelines
+- Efficient incremental builds
+- Scales well to large workflows
+- Strong dependency tracking
+:::
+
+::: {.column width="50%"}
+### ⚠️ Cons
+
+- Forces functional programming
+- Initial setup can be complex
+- Debugging pipelines can be tricky
+- Requires structured project design
+- Less suited for quick ad hoc analysis
+:::
+
+::::
+
+## Alternatives and complements
+
+1.  [systemPipeR](https://systempipe.org) - grounded in bio-stats, command line driven
+1.  [Nextflow](https://www.nextflow.io) - unix based, git integration, HPC, probably suit production environment
+1.  [Snakemake](https://snakemake.github.io) - python equivalent (?) of targets
+
+- [tarborist](github.com/tylermorganwall/tarborist) - indexes your targets pipeline making it easier to inspect and navigate structure
+
+## Basic walk-through
+
+
+
+## Other examples
+
+### 1.Care-shift Tracker
+
+:::: columns
+
+::: {.column width="70%"}
+
+![](cst_tar_vis_net.png)
+:::
+
+::: {.column width="30%" .fragment}
+![](cst_front_end.png)
+:::
+
+::::
+
+## Contributions from the floor
+
+![](dean_gaffney_youreup.gif)

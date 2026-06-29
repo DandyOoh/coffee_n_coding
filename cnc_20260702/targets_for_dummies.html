@@ -32,6 +32,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
   </style>
   <link rel="stylesheet" href="targets_for_dummies_files/libs/revealjs/dist/theme/quarto-84b150702567ae7e15cad124fb9039e2.css">
   <link rel="stylesheet" href="styles.css">
@@ -128,6 +194,16 @@
       margin-right: 0; 
     }
   </style>
+  <link href="targets_for_dummies_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+  <script src="targets_for_dummies_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+  <link href="targets_for_dummies_files/libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+
+  <script src="targets_for_dummies_files/libs/vis-9.1.0/vis-network.min.js"></script>
+
+  <script src="targets_for_dummies_files/libs/visNetwork-binding-2.1.4/visNetwork.js"></script>
+
 </head>
 <body class="quarto-dark">
   <div class="reveal">
@@ -153,22 +229,38 @@ Andy Hood
 <li><a href="#/setting-the-scene" id="/toc-setting-the-scene">Setting the scene</a></li>
 <li><a href="#/typical-workflow" id="/toc-typical-workflow">Typical workflow</a></li>
 <li><a href="#/targets-package-intro" id="/toc-targets-package-intro">{targets} package intro</a></li>
-<li><a href="#/testimonials" id="/toc-testimonials">Testimonials…?</a></li>
-<li><a href="#/pros-and-cons" id="/toc-pros-and-cons">Pro’s and Con’s…</a></li>
+<li><a href="#/testimonials-1" id="/toc-testimonials-1">Testimonials (1)</a></li>
+<li><a href="#/testimonials-2" id="/toc-testimonials-2">Testimonials (2)</a></li>
+<li><a href="#/testimonials-3" id="/toc-testimonials-3">Testimonials (3)</a></li>
+
 <li><a href="#/alternatives-and-complements" id="/toc-alternatives-and-complements">Alternatives and complements</a></li>
-<li><a href="#/basic-walk-through" id="/toc-basic-walk-through">Basic walk-through</a></li>
-<li><a href="#/other-examples" id="/toc-other-examples">Other examples</a></li>
-<li><a href="#/contributions-from-the-floor" id="/toc-contributions-from-the-floor">Contributions from the floor</a></li>
+<li><a href="#/basic-walk-through" id="/toc-basic-walk-through">Basic walk-through</a>
+<ul>
+<li><a href="#/set-up" id="/toc-set-up">Set-up</a></li>
+<li><a href="#/writing-functions" id="/toc-writing-functions">Writing functions</a></li>
+<li><a href="#/creating-targets-_targets.r-script" id="/toc-creating-targets-_targets.r-script">Creating targets (_targets.R script)</a></li>
+<li><a href="#/running-the-pipeline" id="/toc-running-the-pipeline">Running the pipeline</a></li>
+<li><a href="#/visualising-the-pipeline" id="/toc-visualising-the-pipeline">Visualising the pipeline</a></li>
+<li><a href="#/checking-your-results" id="/toc-checking-your-results">Checking your results</a></li>
+<li><a href="#/making-changes" id="/toc-making-changes">Making changes</a></li>
+</ul></li>
+<li><a href="#/other-examples" id="/toc-other-examples">Other examples</a>
+<ul>
+<li><a href="#/care-shift-tracker" id="/toc-care-shift-tracker">1.Care-shift Tracker</a></li>
+<li><a href="#/mencap-ld-cohort-analysis" id="/toc-mencap-ld-cohort-analysis">2.Mencap LD cohort &amp; analysis</a></li>
+</ul></li>
+<li><a href="#/useful-target-functions" id="/toc-useful-target-functions">Useful target functions…</a></li>
+<li><a href="#/contributions-and-questions-from-the-floor" id="/toc-contributions-and-questions-from-the-floor">Contributions and questions from the floor…</a></li>
 </ul>
 </nav>
 </section>
-<section id="setting-the-scene" class="slide level2">
-<h2>Setting the scene</h2>
+<section id="setting-the-scene" class="title-slide slide level1 center">
+<h1>Setting the scene</h1>
 <div class="columns">
 <div class="column" style="width:66%;">
 <p><img data-src="excel_chaos.png"></p>
 </div><div class="column fragment" style="width:33%;">
-<div style="font-size: 0.8em;">
+<div style="font-size: 0.7em;">
 <ul>
 <li>Workflows are in your head</li>
 <li>Poor documentation??</li>
@@ -179,8 +271,9 @@ Andy Hood
 </div>
 </div></div>
 </section>
-<section id="typical-workflow" class="slide level2">
-<h2>Typical workflow</h2>
+
+<section id="typical-workflow" class="title-slide slide level1 center">
+<h1>Typical workflow</h1>
 <ol type="1">
 <li>Get data</li>
 <li>Wrangle data</li>
@@ -189,45 +282,84 @@ Andy Hood
 <li>Report/publish</li>
 </ol>
 </section>
-<section id="targets-package-intro" class="slide level2">
-<h2>{targets} package intro</h2>
+
+<section id="targets-package-intro" class="title-slide slide level1 center">
+<h1>{targets} package intro</h1>
 <p><a href="https://books.ropensci.org/targets">Targets</a> is a pipeline tool for statistics and data science. It compiles all the tasks in a given pipeline (project) and only runs/computes them when things change. Dependencies are ALL automatically processed.</p>
-<p>It’s a function-orientated programming approach.</p>
+<p>It’s a function-orientated programming approach to managing workflow.</p>
 </section>
-<section id="testimonials" class="slide level2">
-<h2>Testimonials…?</h2>
+
+<section id="testimonials-1" class="title-slide slide level1 center">
+<h1>Testimonials (1)</h1>
 <div class="speech-bubble fragment">
-<p>“Was reet bloody great” - Jac G</p>
+<div style="font-size: 0.7em;">
+<p>“I would like to calmly and freely state - certainly without a manager pointing a gun at me - that the targets R package is fantastic. Before it entered my life, my analysis lived across dozens of mysteriously named scripts with embedded functions hiding in plain sight. Changing one line meant re-running everything in a careful order hoping I hadn’t missed one of the steps. Now, and I cannot stress enough that I am saying this of my own volition, targets tracks dependencies and only reruns what’s affected, which feels less like coding and more like being gently guided by a very competent but slightly controlling assistant. Small changes no longer trigger full existential crises—or full pipeline reruns. It’s efficient and reproducible. Five stars. Please let me leave now. I have a family.” - Alex L</p>
+</div>
+</div>
+</section>
+
+<section id="testimonials-2" class="title-slide slide level1 center">
+<h1>Testimonials (2)</h1>
+<div class="speech-bubble fragment">
+<p>“Was proper reet bloody great” - Jac G</p>
 </div>
 <div class="speech-bubble fragment">
-<p>“What time’s the ruggers on Jeeves?” - Alex L</p>
+<div style="font-size: 0.8em;">
+<p>“Told A&amp;M what to do with {targets} in total lay-terms with no jargon. They’re all incompetent, did it totally wrong. Idiots!” - Matt D</p>
+</div>
+</div>
+<div class="speech-bubble fragment">
+<div style="font-size: 0.8em;">
+<p>“Isn’t cheese wonderful? Love a drop of Wensleydale melted on a slice of freshly home-baked and toasted seeded batch. Mmmmmmm” - Craig P</p>
+</div>
 </div>
 </section>
-<section id="pros-and-cons" class="slide level2">
-<h2>Pro’s and Con’s…</h2>
+
+<section id="testimonials-3" class="title-slide slide level1 center">
+<h1>Testimonials (3)</h1>
+<div class="speech-bubble fragment">
+<div style="font-size: 0.9em;">
+<p>“I find targets most useful for data wrangling as it saves time not having to keep re-running the same code, helps simplify your output scripts and rendering them quicker. I used it for the positive deviance work where I was running lots of different regression models which were slow to compute - with targets you just run them once and the results are stored; then you can refer back to those versions as and when needed.” - Sarah L</p>
+</div>
+</div>
+</section>
+
+<section>
+<section id="section" class="title-slide slide level1 center">
+<h1></h1>
+
+</section>
 <div class="columns">
 <div class="column" style="width:50%;">
-<h3 id="pros">✅ Pros</h3>
+<section id="pros" class="title-slide slide level2 center" style="font-size: 0.9em;">
+<h2>✅ Pros</h2>
 <ul>
 <li>Forces functional programming</li>
-<li>Aids reproducible pipelines</li>
-<li>Efficient incremental builds</li>
 <li>Scales well to large workflows</li>
-<li>Strong dependency tracking</li>
+<li>Aids reproducible pipelines</li>
+<li>Efficient incremental builds (reduces duplication)</li>
+<li>Dependency tracking - don’t worry about order of code</li>
+<li>Facilitates collaboration</li>
 </ul>
+</section>
+
 </div><div class="column" style="width:50%;">
-<h3 id="cons">⚠️ Cons</h3>
+<section id="cons" class="title-slide slide level2 center" style="font-size: 0.9em;">
+<h2>⚠️ Cons</h2>
 <ul>
 <li>Forces functional programming</li>
+<li>Less suited for quick ad hoc analysis</li>
 <li>Initial setup can be complex</li>
 <li>Debugging pipelines can be tricky</li>
-<li>Requires structured project design</li>
-<li>Less suited for quick ad hoc analysis</li>
+<li>Repeat authentication if external data connection</li>
 </ul>
-</div></div>
 </section>
-<section id="alternatives-and-complements" class="slide level2">
-<h2>Alternatives and complements</h2>
+
+</div>
+</div></section>
+<section id="alternatives-and-complements" class="title-slide slide level1 center">
+<h1>Alternatives and complements</h1>
+<div style="font-size: 0.9em;">
 <ol type="1">
 <li><a href="https://systempipe.org">systemPipeR</a> - grounded in bio-stats, command line driven</li>
 <li><a href="https://www.nextflow.io">Nextflow</a> - unix based, git integration, HPC, probably suit production environment</li>
@@ -235,14 +367,175 @@ Andy Hood
 </ol>
 <ul>
 <li><a href="github.com/tylermorganwall/tarborist">tarborist</a> - indexes your targets pipeline making it easier to inspect and navigate structure</li>
+<li><a href="https://arrow.apache.org/docs/r/">arrow</a> - efficient read/write of (parquet) data files.</li>
+<li>rmkd and quarto - integrating target objects into outputs.</li>
+<li><a href="https://testthat.r-lib.org/">testthat</a> - build in unit test of your functions</li>
 </ul>
+</div>
 </section>
-<section id="basic-walk-through" class="slide level2">
-<h2>Basic walk-through</h2>
+
+<section>
+<section id="basic-walk-through" class="title-slide slide level1 center">
+<h1>Basic walk-through</h1>
+
 </section>
-<section id="other-examples" class="slide level2">
-<h2>Other examples</h2>
-<h3 id="care-shift-tracker">1.Care-shift Tracker</h3>
+<section id="set-up" class="title-slide slide level2 center">
+<h2>Set-up</h2>
+<p>Like my middle name, this is basic. For a better and more detailed walk-through please visit <a href="https://books.ropensci.org/targets/">here</a> or <a href="https://carpentries-incubator.github.io/targets-workshop/basic-targets.html">here</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(targets) <span class="co"># load package</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">tar_script</span>() <span class="co"># creates 'dummy' targets script (beware, will overwrite if you</span></span>
+<span id="cb1-3"><a href=""></a><span class="co"># already have one!)</span></span>
+<span id="cb1-4"><a href=""></a></span>
+<span id="cb1-5"><a href=""></a><span class="co"># Create the "R" directory for functions to sit if it doesn't exist</span></span>
+<span id="cb1-6"><a href=""></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">"R"</span>)) {</span>
+<span id="cb1-7"><a href=""></a>  <span class="fu">dir.create</span>(<span class="st">"R"</span>)</span>
+<span id="cb1-8"><a href=""></a>}</span>
+<span id="cb1-9"><a href=""></a></span>
+<span id="cb1-10"><a href=""></a><span class="co"># Create some blank function scripts to reflect your workflow</span></span>
+<span id="cb1-11"><a href=""></a><span class="co"># You could just create 1 e.g. 'Functions.R' but I prefer grouping</span></span>
+<span id="cb1-12"><a href=""></a>files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"data_grab.R"</span>, <span class="st">"data_wrangle.R"</span>, <span class="st">"plot_data.R"</span>)</span>
+<span id="cb1-13"><a href=""></a>paths <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"R"</span>, files)</span>
+<span id="cb1-14"><a href=""></a></span>
+<span id="cb1-15"><a href=""></a><span class="fu">file.create</span>(paths[<span class="sc">!</span><span class="fu">file.exists</span>(paths)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+
+<section id="writing-functions" class="title-slide slide level2 center">
+<h2>Writing functions</h2>
+
+</section>
+<section id="grab-data" class="slide level3">
+<h3>Grab data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co">#' retrieve data from a specific location in directory</span></span>
+<span id="cb2-2"><a href=""></a><span class="co">#' @param file where the file is stored</span></span>
+<span id="cb2-3"><a href=""></a><span class="co">#' @returns a dataframe of hospital admission activity</span></span>
+<span id="cb2-4"><a href=""></a></span>
+<span id="cb2-5"><a href=""></a>get_data <span class="ot">&lt;-</span> <span class="cf">function</span>(file){</span>
+<span id="cb2-6"><a href=""></a>  </span>
+<span id="cb2-7"><a href=""></a>  data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file)</span>
+<span id="cb2-8"><a href=""></a>  </span>
+<span id="cb2-9"><a href=""></a>  <span class="fu">return</span>(data)</span>
+<span id="cb2-10"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="wrangle-data" class="slide level3">
+<h3>Wrangle data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co">#' create some metrics from grouped data</span></span>
+<span id="cb3-2"><a href=""></a><span class="co">#' @param data the target object with relevant data</span></span>
+<span id="cb3-3"><a href=""></a><span class="co">#' @param group the variable in the data to group by</span></span>
+<span id="cb3-4"><a href=""></a><span class="co">#' @returns an aggregate dataframe ready for plotting</span></span>
+<span id="cb3-5"><a href=""></a></span>
+<span id="cb3-6"><a href=""></a>wrangle_data <span class="ot">&lt;-</span> <span class="cf">function</span>(data,group){</span>
+<span id="cb3-7"><a href=""></a>  </span>
+<span id="cb3-8"><a href=""></a>  wrangled <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb3-9"><a href=""></a>    <span class="fu">group_by</span>({{ group }}) <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href=""></a>    <span class="fu">summarise</span>(<span class="at">spells =</span> <span class="fu">sum</span>(spells),</span>
+<span id="cb3-11"><a href=""></a>              <span class="at">los =</span> <span class="fu">sum</span>(los),</span>
+<span id="cb3-12"><a href=""></a>              <span class="at">patients =</span> <span class="fu">sum</span>(patients)) <span class="sc">|&gt;</span></span>
+<span id="cb3-13"><a href=""></a>    <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-14"><a href=""></a>    <span class="fu">rename</span>(<span class="at">group =</span> {{ group }}) <span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a href=""></a>    <span class="fu">mutate</span>(<span class="at">spells_per_pat =</span> <span class="fu">round</span>(spells<span class="sc">/</span>patients,<span class="dv">2</span>),</span>
+<span id="cb3-16"><a href=""></a>           <span class="at">avg_los =</span> <span class="fu">round</span>(los<span class="sc">/</span>spells,<span class="dv">2</span>))</span>
+<span id="cb3-17"><a href=""></a>  </span>
+<span id="cb3-18"><a href=""></a>  <span class="fu">return</span>(wrangled)</span>
+<span id="cb3-19"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="plot-data" class="slide level3">
+<h3>Plot data</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co">#' create a plot of our data</span></span>
+<span id="cb4-2"><a href=""></a><span class="co">#' @param data the target object with relevant data</span></span>
+<span id="cb4-3"><a href=""></a><span class="co">#' @returns a lovely plot of our data</span></span>
+<span id="cb4-4"><a href=""></a></span>
+<span id="cb4-5"><a href=""></a></span>
+<span id="cb4-6"><a href=""></a>plot_data <span class="ot">&lt;-</span> <span class="cf">function</span>(data){</span>
+<span id="cb4-7"><a href=""></a>  </span>
+<span id="cb4-8"><a href=""></a>  plot <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href=""></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-10"><a href=""></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.character</span>(group), <span class="at">y=</span>avg_los), <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a href=""></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Really great insights on length of stay"</span>,</span>
+<span id="cb4-12"><a href=""></a>         <span class="at">subtitle =</span> <span class="st">"Woohoo, let's go!"</span>,</span>
+<span id="cb4-13"><a href=""></a>         <span class="at">x =</span> <span class="st">"Group"</span>,</span>
+<span id="cb4-14"><a href=""></a>         <span class="at">y =</span> <span class="st">"Value"</span>)</span>
+<span id="cb4-15"><a href=""></a>  </span>
+<span id="cb4-16"><a href=""></a>  <span class="fu">return</span>(plot)</span>
+<span id="cb4-17"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+
+<section id="creating-targets-_targets.r-script" class="title-slide slide level2 center">
+<h2>Creating targets (_targets.R script)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">library</span>(targets)</span>
+<span id="cb5-2"><a href=""></a><span class="fu">library</span>(tarchetypes)</span>
+<span id="cb5-3"><a href=""></a></span>
+<span id="cb5-4"><a href=""></a><span class="fu">tar_source</span>()</span>
+<span id="cb5-5"><a href=""></a></span>
+<span id="cb5-6"><a href=""></a><span class="fu">tar_option_set</span>(<span class="at">packages =</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>))</span>
+<span id="cb5-7"><a href=""></a></span>
+<span id="cb5-8"><a href=""></a><span class="co"># End this file with a list of target objects.</span></span>
+<span id="cb5-9"><a href=""></a><span class="fu">list</span>(</span>
+<span id="cb5-10"><a href=""></a>  <span class="fu">tar_target</span>(data,</span>
+<span id="cb5-11"><a href=""></a>             <span class="fu">get_data</span>(<span class="st">"data/apcs_2425.csv"</span>)),</span>
+<span id="cb5-12"><a href=""></a>  </span>
+<span id="cb5-13"><a href=""></a>  <span class="fu">tar_target</span>(wrangle,</span>
+<span id="cb5-14"><a href=""></a>             <span class="fu">wrangle_data</span>(data, age)),</span>
+<span id="cb5-15"><a href=""></a>  </span>
+<span id="cb5-16"><a href=""></a>  <span class="fu">tar_target</span>(plot,</span>
+<span id="cb5-17"><a href=""></a>             <span class="fu">plot_data</span>(wrangle))</span>
+<span id="cb5-18"><a href=""></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+
+<section id="running-the-pipeline" class="title-slide slide level2 center">
+<h2>Running the pipeline</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">tar_make</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+
+<section id="visualising-the-pipeline" class="title-slide slide level2 center">
+<h2>Visualising the pipeline</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="visNetwork html-widget html-fill-item" id="htmlwidget-ae987630dd54837b9121" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-ae987630dd54837b9121">{"x":{"nodes":{"name":["data","data_summary","summarize_data"],"type":["stem","stem","function"],"description":[null,null,null],"status":["uptodate","uptodate","uptodate"],"seconds":[0,0,null],"bytes":[439,86,null],"branches":[null,null,null],"label":["data","data_summary","summarize_data"],"color":["#354823","#354823","#354823"],"id":["data","data_summary","summarize_data"],"level":[1,2,1],"shape":["dot","dot","triangle"]},"edges":{"from":["data","summarize_data"],"to":["data_summary","data_summary"],"color":["#354823","#354823"],"arrows":["to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":{"type":"cubicBezier","forceDirection":"horizontal"}},"physics":{"stabilization":false},"interaction":{"zoomSpeed":1},"layout":{"hierarchical":{"enabled":true,"levelSeparation":150,"direction":"LR"}}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":{"text":"","style":"font-family:Georgia, Times New Roman, Times, serif;font-weight:bold;font-size:20px;text-align:center;"},"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":false,"degree":{"from":1,"to":1},"algorithm":"hierarchical","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":true,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"legend":{"width":0.2,"useGroups":false,"position":"right","ncol":1,"stepX":100,"stepY":100,"zoom":true,"nodes":{"label":["Up to date","Regular\ntarget","Function"],"color":["#354823","#899DA4","#899DA4"],"shape":["dot","dot","triangle"]},"nodesToDataframe":true},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+
+<section id="checking-your-results" class="title-slide slide level2 center">
+<h2>Checking your results</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>targets<span class="sc">::</span><span class="fu">tar_read</span>(plot)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="targets_for_dummies_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+
+<section id="making-changes" class="title-slide slide level2 center">
+<h2>Making changes</h2>
+<p>So those pesky clients of yours have now decided they want something different:</p>
+<ol type="1">
+<li>They don’t like sky-blue and would like the chart in dark-olive-green instead!</li>
+<li>More interested in ethnic category than age group</li>
+<li>They’ve just re-run their activity query and have a file for a new year</li>
+</ol>
+<div class="fragment" style="font-size: 1.3em;">
+<p><strong>Cut away for live demonstration…</strong></p>
+</div>
+</section>
+</section>
+<section>
+<section id="other-examples" class="title-slide slide level1 center">
+<h1>Other examples</h1>
+
+</section>
+<section id="care-shift-tracker" class="title-slide slide level2 center">
+<h2>1.Care-shift Tracker</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <p><img data-src="cst_tar_vis_net.png"></p>
@@ -250,8 +543,32 @@ Andy Hood
 <p><img data-src="cst_front_end.png"></p>
 </div></div>
 </section>
-<section id="contributions-from-the-floor" class="slide level2">
-<h2>Contributions from the floor</h2>
+
+<section id="mencap-ld-cohort-analysis" class="title-slide slide level2 center">
+<h2>2.Mencap LD cohort &amp; analysis</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img data-src="mencap_back_end.png"></p>
+</div><div class="column fragment" style="width:60%;">
+<p><img data-src="mencap_tar_vis_net.png"></p>
+</div><div class="column fragment" style="width:20%;">
+<p><img data-src="mencap_front_end.png"></p>
+</div></div>
+</section>
+</section>
+<section id="useful-target-functions" class="title-slide slide level1 center">
+<h1>Useful target functions…</h1>
+<ul>
+<li>tar_prune() - removes redundant targets</li>
+<li>tar_destroy() - go nuclear (destroys all targets)!</li>
+<li>tar_objects() - list of all current targets</li>
+<li>tar_delete(<em>target_name</em>) - remove specific target</li>
+<li>getSrcFilename(<em>function_name</em>) - find source file of a specific function</li>
+</ul>
+</section>
+
+<section id="contributions-and-questions-from-the-floor" class="title-slide slide level1 center">
+<h1>Contributions and questions from the floor…</h1>
 
 
 <img data-src="dean_gaffney_youreup.gif" class="r-stretch"></section>

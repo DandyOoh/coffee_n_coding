@@ -1,0 +1,9 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+wrangle_data|function|abe19eb06364ba28
+get_data|function|e16a617165844d2c
+plot_data|function|62fc402fcf05e41f
+wrangle|stem|a90f524ed8616908|a55f9187983d1cb4|65c8c1b50d670767|1497453030||t20629.6112051496s|s309b|309|rds|local|vector|||0.02||
+plot|stem|580b134ed1f0b7b2|90acd543da39e688|75012d30111bc577|874984291||t20629.611206618s|s112454b|112454|rds|local|vector|||0.04||
+data|stem|3d22186a944fb00f|471f4c50e8eb2dc6|2c530c1562a7fbd1|33550471||t20629.6157886946s|s439b|439|rds|local|vector|||0||
+data_summary|stem|d18ead9882385e72|2e4ea7419356bab6|9b84c4af947c55ff|-651121042||t20629.6157903099s|s86b|86|rds|local|vector|||0||
+summarize_data|function|dc619228d9319364
